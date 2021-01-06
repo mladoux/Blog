@@ -16,6 +16,13 @@ SECRET_KEY=$(python -c 'from django.core.management.utils import get_random_secr
 # add app secret to environment config
 echo "SECRET_KEY=$SECRET_KEY" > app/.env
 
+cd ./app
+
+./manage.py migrate
+
+echo "Create Superuser"
+./manage.py createsuperuser
+
 # Notify user
 echo "Initial setup complete!"
 echo "Run \`source venv/bin/activate\` to enter virtual environment!"
